@@ -1,2 +1,2 @@
-import sys
-print(eval(''.join(sys.argv[1:])))
+from sys import argv
+print(eval(''.join(argv[1:])))
