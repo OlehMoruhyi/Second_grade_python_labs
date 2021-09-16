@@ -16,9 +16,7 @@ def assay(t):
             ind = 10
         else:
             return False
-    if ind:
-        return True
-    return False
+    return ind
 
 
 exp = ''
