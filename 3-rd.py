@@ -1,4 +1,4 @@
-import sys
+from sys import argv
 
 # checklist for numbers and expression symbols
 num_list = '1234567890'
@@ -10,18 +10,19 @@ def assay(t):
     for q in t:
         if q in num_list:
             ind = 1
-        elif ind and q in exp_list:
-            ind = 0
-        elif ind == 1 and (q == '(' or ')'):
+        elif q in exp_list:
+            if ind:
+                ind = 0
+            else:
+                return False
+        elif ind != 10 and (q == '(' or ')'):
             ind = 10
         else:
             return False
     return ind
 
 
-exp = ''
-for i in range(1, len(sys.argv)):
-    exp += sys.argv[i]
+exp = ''.join(argv[1:])
 if assay(exp):
     print('(True, {})' .format(eval(exp)))
 else:
