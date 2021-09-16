@@ -1,4 +1,4 @@
-import sys
+from sys import argv
 # from math import functions
 from math import cos, acos, cosh, acosh, sin, asin, sinh, asinh, tan, atan, tanh, atanh, fabs, pow, sqrt
 
@@ -23,11 +23,11 @@ def divide(a, b):
 # checklist for correct input function
 exp_list = ['cos', 'acos', 'cosh', 'acosh', 'sin', 'asin', 'sinh', 'asinh', 'tan', 'atan', 'tanh', 'atanh', 'fabs',
             'pow', 'sqrt', 'plus', 'minus', 'multiply', 'devide']
-if sys.argv[1] in exp_list:
+if argv[1] in exp_list:
     result = 0
-    exp = 'result = ' + sys.argv[1] + '(' + sys.argv[2]
-    if sys.argv[4]:
-        exp += ', ' + sys.argv[4]
+    exp = 'result = ' + argv[1] + '(' + argv[2]
+    if len(argv) > 3:
+        exp += ', ' + argv[3]
     exp += ')'
     exec(exp)
     print(result)
