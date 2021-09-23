@@ -6,16 +6,13 @@ exp_list = '-+*/%'
 
 
 def assay(t):
-    ind = 1
+    ind = 0
     for q in t:
         if q in num_list:
             ind = 1
-        elif q in exp_list:
-            if ind:
-                ind = 0
-            else:
-                return False
-        elif ind != 10 and (q == '(' or ')'):
+        elif (q in exp_list) and (ind != 0):
+            ind = 0
+        elif (q == '(' or q == ')') and ind != 10:
             ind = 10
         else:
             return False

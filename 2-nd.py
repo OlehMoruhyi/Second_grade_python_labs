@@ -1,35 +1,23 @@
 from sys import argv
-# from math import functions
-from math import cos, acos, cosh, acosh, sin, asin, sinh, asinh, tan, atan, tanh, atanh, fabs, pow, sqrt
+from operator import add, pow, mul, sub, truediv
+
+num_list = '1234567890'
+exp_list = ['add', 'pow', 'mul', 'sub', 'truediv']
 
 
-# add functions of + - * /
-def plus(a, b):
-    return a + b
+def assay():
+    if len(argv) != 4:
+        return False
+    if (argv[1] in exp_list) is False:
+        return False
+    if (argv[2] in num_list) is False:
+        return False
+    if (argv[3] in num_list) is False:
+        return False
+    return True
 
 
-def minus(a, b):
-    return a - b
-
-
-def multiply(a, b):
-    return a * b
-
-
-def divide(a, b):
-    return a / b
-
-
-# checklist for correct input function
-exp_list = ['cos', 'acos', 'cosh', 'acosh', 'sin', 'asin', 'sinh', 'asinh', 'tan', 'atan', 'tanh', 'atanh', 'fabs',
-            'pow', 'sqrt', 'plus', 'minus', 'multiply', 'devide']
-if argv[1] in exp_list:
-    result = 0
-    exp = 'result = ' + argv[1] + '(' + argv[2]
-    if len(argv) > 3:
-        exp += ', ' + argv[3]
-    exp += ')'
-    exec(exp)
-    print(result)
+if assay():
+    print(eval(argv[1] + '(' + argv[2] + ', ' + argv[3] + ')'))
 else:
-    print('unknown expression')
+    print('Incorrect expression')
