@@ -1,17 +1,16 @@
 from sys import argv
+from operator import add, pow, mul, sub, truediv
 
-
-# checklist for numbers and expression symbols
 num_list = '1234567890'
-exp_list = '-+*/'
+exp_list = ['add', 'pow', 'mul', 'sub', 'truediv']
 
 
 def assay():
     if len(argv) != 4:
         return False
-    if (argv[1] in num_list) is False:
+    if (argv[1] in exp_list) is False:
         return False
-    if (argv[2] in exp_list) is False or (argv[2] == '/' and argv[3] == '0'):
+    if (argv[2] in num_list) is False:
         return False
     if (argv[3] in num_list) is False:
         return False
@@ -19,6 +18,6 @@ def assay():
 
 
 if assay():
-    print(eval(' '.join(argv[1:])))
+    print(eval(argv[1] + '(' + argv[2] + ', ' + argv[3] + ')'))
 else:
     print('Incorrect expression')
