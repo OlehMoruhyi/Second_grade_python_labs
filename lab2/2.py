@@ -2,8 +2,9 @@ class Rational:
     numerator = 1
     denominator = 1
 
-    def __init__(self, n, d):
+    def __init__(self, n=1, d=1):
         try:
+            n, d = int(n), int(d)
             self.numerator = int(n / gcd(n, d))
             self.denominator = int(d / gcd(n, d))
 
@@ -26,6 +27,6 @@ def gcd(a, b):
     return a
 
 
-r = Rational('e', 7)
+r = Rational(input('Enter numerator: '), input('Enter denominator: '))
 r.out()
 r.float_out()
