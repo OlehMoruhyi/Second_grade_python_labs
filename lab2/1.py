@@ -1,7 +1,7 @@
 class Rectangle:
     def __init__(self):
-        self.__length = 1
-        self.__width = 1
+        self.__length = 1.0
+        self.__width = 1.0
 
     @property
     def length(self):
@@ -19,6 +19,7 @@ class Rectangle:
                 raise ValueError
 
         except ValueError:
+            self.__length = 1
             print('An error in entered data. Length = 1.0')
 
     @width.setter
@@ -29,17 +30,17 @@ class Rectangle:
                 raise ValueError
 
         except ValueError:
+            self.__width = 1
             print('An error in entered data. Width = 1.0')
 
-
-    def perimeter_getter(self):
+    def perimeter(self):
         return (self.__length + self.__width) * 2
 
-    def square_getter(self):
+    def square(self):
         return self.__length * self.__width
 
 
 r1 = Rectangle()
 r1.length = 2.4
 r1.width = input()
-print(r1.perimeter_getter())
+print(r1.perimeter())
