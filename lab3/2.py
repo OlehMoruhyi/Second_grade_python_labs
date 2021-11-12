@@ -44,7 +44,7 @@ class Pizza:
             raise TypeError("Bad enter")
         with open("2_3.json", "r") as f: # json file with ingredients
             if not ing.isdigit() or not (0 <= int(ing) < len(load(f))):  # check for an enter ingredient is in list
-                raise ValueError("Not number")
+                raise ValueError("Not number of ingredient")
         if self.ingredient.get(ing):
             self.ingredient.update({ing: number + self.ingredient.get(ing)})  # update recipe of pizza for client
         else:
@@ -71,6 +71,8 @@ try:
         else:
             print(show_ingredients())
             p.add_ingredient(input('What did you want?\n'), int(input('How much?\n')))
+
+    print("Have a nice day)))")
 
 except (TypeError, ValueError) as er:
     print('error\n' + str(er))
