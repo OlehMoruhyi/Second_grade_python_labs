@@ -1,0 +1,1 @@
+print(max(None, 1))
