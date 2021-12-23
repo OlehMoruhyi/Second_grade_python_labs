@@ -3,12 +3,12 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import scrolledtext
 from tkinter.ttk import Combobox
-from Classes import ITeacher, ILocalCourse, IOffsiteCourse, ICourseFactory
+from Classes import ITeacher, ILocalCourse, IOffsiteCourse, courseFactory
 
 
 def clicked0():
     try:
-        ICourseFactory.add_teacher(ITeacher(txt0_0.get(), txt0_1.get()))
+        courseFactory.add_teacher(ITeacher(txt0_0.get(), txt0_1.get()))
         lbl0_0.configure(text="Успех")
     except (TypeError, Exception, Error) as er:
         lbl0_0.configure(text=er)
@@ -17,10 +17,10 @@ def clicked0():
 def clicked1():
     try:
         if combo1_0.get() == "Локальный":
-            ICourseFactory.add_local(ILocalCourse(txt1_0.get(), txt1_1.get(), int(txt1_2.get()), txt1_3.get()))
+            courseFactory.add_local(ILocalCourse(txt1_0.get(), txt1_1.get(), int(txt1_2.get()), txt1_3.get()))
             lbl1_0.configure(text="Успех))")
         elif combo1_0.get() == "Выездной":
-            ICourseFactory.add_offsite(IOffsiteCourse(txt1_0.get(), txt1_1.get(), int(txt1_2.get()), txt1_3.get()))
+            courseFactory.add_offsite(IOffsiteCourse(txt1_0.get(), txt1_1.get(), int(txt1_2.get()), txt1_3.get()))
             lbl1_0.configure(text="Успех))")
         else:
             lbl1_0.configure(text=combo1_0.get() + " не тип курса, что вы вообще ввели?")
@@ -31,7 +31,7 @@ def clicked1():
 def clicked2_0():
     txt2_1.delete(1.0, END)
     try:
-        txt2_1.insert(END, ICourseFactory.teachers())
+        txt2_1.insert(END, courseFactory.teachers())
         lbl2_0.configure(text="Успех))")
     except (TypeError, Exception, Error) as er:
         lbl2_0.configure(text=er)
@@ -40,7 +40,7 @@ def clicked2_0():
 def clicked2_1():
     txt2_1.delete(1.0, END)
     try:
-        txt2_1.insert(END, ICourseFactory.courses())
+        txt2_1.insert(END, courseFactory.courses())
         lbl2_0.configure(text="Успех))")
     except (TypeError, Exception, Error) as er:
         lbl2_0.configure(text=er)
@@ -49,7 +49,7 @@ def clicked2_1():
 def clicked2_2():
     txt2_1.delete(1.0, END)
     try:
-        txt2_1.insert(END, ICourseFactory.one_teacher(int(txt2_0.get())))
+        txt2_1.insert(END, courseFactory.one_teacher(int(txt2_0.get())))
         lbl2_0.configure(text="Успех))")
     except (TypeError, Exception, Error) as er:
         lbl2_0.configure(text=er)
@@ -107,7 +107,6 @@ btn1_0.grid(column=0, row=10)
 
 
 frame = Frame(tab2, relief=RAISED, bd=2)
-
 btn2_0 = Button(frame, text='Все преподаватели', width=20, command=clicked2_0)
 btn2_0.grid(column=0, row=0)
 btn2_1 = Button(frame, text='Все курсы', width=20, command=clicked2_1)

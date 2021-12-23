@@ -2,7 +2,12 @@ from MySqlConnector import connection as con
 from MySqlConnector import teacherID, coursesID
 
 
-class ITeacher:
+class IITeacher:
+    def to_array(self):
+        pass
+
+
+class ITeacher(IITeacher):
     counter = teacherID
 
     def __init__(self, name, surname):
@@ -43,7 +48,12 @@ class ITeacher:
         return self.id_teacher, self.name, self.surname
 
 
-class ICourse:
+class IICourse:
+    def to_array(self):
+        pass
+
+
+class ICourse(IICourse):
     counter = coursesID
 
     def __init__(self, name, program, teacher):
@@ -134,7 +144,30 @@ class IOffsiteCourse(ICourse):
         return self.id_course, self.name, self.program, self.teacher, self.city
 
 
-class CourseFactory:
+class ICourseFactory:
+    def add_teacher(self, teacher):
+        pass
+
+    def add_teacher(self, teacher):
+        pass
+
+    def add_local(self, local):
+        pass
+
+    def add_offsite(self, local):
+        pass
+
+    def teachers(self):
+        pass
+
+    def one_teacher(self, teacher_id):
+        pass
+
+    def courses(self):
+        pass
+
+
+class CourseFactory(ICourseFactory):
     def __init__(self, connection):
         self.connection = connection
 
@@ -190,7 +223,8 @@ class CourseFactory:
         if not isinstance(teacher_id, int):
             raise TypeError("Strange id")
         select = f'SELECT id, Name1, Program, Teacher, lab as place FROM LocalCourses where Teacher = {teacher_id} ' \
-                 f'UNION SELECT id, Name1, Program, Teacher, city as place FROM OffsiteCourses where Teacher = {teacher_id} ' \
+                 f'UNION SELECT id, Name1, Program, Teacher, city as place FROM OffsiteCourses where Teacher = ' \
+                 f'{teacher_id} ' \
                  f'order by id'
         f = ''
         with self.connection.cursor() as cursor:
@@ -211,4 +245,4 @@ class CourseFactory:
         return f
 
 
-ICourseFactory = CourseFactory(con)
+courseFactory = CourseFactory(con)

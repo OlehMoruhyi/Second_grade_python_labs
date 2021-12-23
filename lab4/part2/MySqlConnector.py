@@ -27,9 +27,6 @@ try:
         coursesID1 = 0
     coursesID = max(coursesID, coursesID1)
 
-
-
-
     del select1, select2, coursesID1
 except Error as e:
     print(e)
